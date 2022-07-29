@@ -28,7 +28,7 @@ class PostController extends Controller
         $followCount = friend::join('users', 'users.id', '=', 'friends.requester')->where('status', '=', 1)->where('friends.user_requested', '=', auth()->user()->id)->get('users.*', 'friends.*');
         $user_id = Auth::user()->id;
         $fn_post = Post::join('friends', 'friends.requester', '=', 'posts.user_id')->where('status', '=', 1)->where('post_status', '=', 2)->where('friends.requester', '=', auth()->user()->id)->get('friends.*');
- 
+
         // $post="select * from `friends` where `friends`.`requester` = 1 and `status` = 1 and `friends`.`requester`";
         //  DB::enableQueryLog();
         $posts = Post::with('like', 'comment.user', 'user', 'friend')->where('post_status', '=', 2)->orderByDesc('created_at')->get();
@@ -44,25 +44,25 @@ class PostController extends Controller
         // $data = Product::join('categories','categories.id','=','category_id')->get(['products.*','categories.cname']);
         //    $data = Post::latest()->get();
         // $users = User::where('id', '!=', auth()->id())->get();
-         $data = friend::all();
-        if(!$data){
+        $data = friend::all();
+        if (!$data) {
             $user = User::where('type', '=', 1)->where('id', '!=', auth()->id())->get();
             // $user = friend::join('users', 'users.id', '!=', 'friends.requester')->where('status', '=', 0)->where('users.type', '=', 1)->where('users.id', '!=', auth()->id())->get(['users.*']);
-        // exit();
-        }else{
-           
+            // exit();
+        } else {
+
             // $user = friend::leftjoin('users', 'users.id', '=', 'friends.requester')->where('status', '=', 0)->where('users.type', '=', 1)->where('users.id', '=', auth()->id())->get(['users.*']);
             $user = DB::table('users')
-            ->leftJoin('friends', 'friends.requester', 'users.id')
-            ->where('users.id', '!=', auth()->user()->id)
-            ->where('users.type', '=', 1)
-            ->where(function ($query) {
-                return $query->orWhere('friends.requester',auth()->user()->id)
-                    ->orWhereNull('friends.status',0);
+                ->leftJoin('friends', 'friends.requester', 'users.id')
+                ->where('users.id', '!=', auth()->user()->id)
+                ->where('users.type', '=', 1)
+                ->where(function ($query) {
+                    return $query->orWhere('friends.requester', auth()->user()->id)
+                        ->orWhereNull('friends.status', 0);
                     // ->orWhereNull('friends.requester');
-            })
-            ->select('users.id', 'users.name', 'users.image', 'friends.status')
-            ->get();
+                })
+                ->select('users.id', 'users.name', 'users.image', 'friends.status')
+                ->get();
             // exit();
         }
         $friend_req = friend::join('users', 'users.id', '=', 'friends.requester')->where('status', '=', 1)->where('friends.user_requested', '=', auth()->user()->id)->get(['friends.id as fid', 'friends.created_at as ftime', 'users.*']);

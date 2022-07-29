@@ -177,10 +177,10 @@
     width: 100%;
   }*/
   }
-  svg{
+
+  svg {
     height: 80px;
   }
-  
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -214,16 +214,18 @@
         </li>
         <li><a class="navbar-brand" href="post/create" title="New Post"> <i class="fa fa-upload" aria-hidden="true"></i> </a></li>
         <!-- <li><a href="#Suggestions" title="All User"><i class="fa fa-users" aria-hidden="true"></i></a></li> -->
-        <li><a href="/Friend_requests" title="Request User"><i class="fa fa-user-plus" aria-hidden="true"></i><p class="badge"></p></a></li>
+        <li><a href="/Friend_requests" title="Request User"><i class="fa fa-user-plus" aria-hidden="true"></i>
+            <p class="badge"></p>
+          </a></li>
         <!-- <li><a href="#friends" title="Following User"><i class="fas fa-user-friends"></i></a></li> -->
         @if(auth()->user()->type ==' 1')
         <li><a href="/postshow" title="Following User"> Accept post</a></li>
         @endif
         <li style="margin-top: 12px;">
           <form class="d-flex input-group w-auto" action="{{ route('search')}}" method="get">@csrf
-            <input type="search"name="search" class="form-control rounded" style="opacity: 0.8;"; placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <input type="search" name="search" class="form-control rounded" style="opacity: 0.8;" ; placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
-            <button type="submit"  ><i class="fas fa-search"></i></button> 
+              <button type="submit"><i class="fas fa-search"></i></button>
             </span>
           </form>
         </li>
@@ -237,7 +239,7 @@
             </li>
           </ul>
         </li>
-       
+
       </ul>
       <div class="nav-toggle">
         <span class="bar bar1"></span>

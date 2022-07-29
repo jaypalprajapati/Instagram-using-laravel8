@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -66,8 +66,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user['image'] = $imageName;
         $user->save();
-      
-      
+
+
         // auth()->loginUsingId($user->id);
         return redirect()->route('login');
     }
@@ -143,12 +143,11 @@ class UserController extends Controller
         $followingCount = friend::join('users', 'users.id', '=', 'friends.requester')->where('status', '=', 1)->where('friends.user_requested', '=', auth()->user()->id)->get(['friends.id as fid', 'friends.created_at as ftime', 'users.*'])->count();
         $followCount = friend::join('users', 'users.id', '=', 'friends.requester')->where('status', '=', 1)->where('friends.requester', '=', auth()->user()->id)->get(['friends.id as fid', 'friends.created_at as ftime', 'users.*'])->count();
         $pending =  User::leftjoin('posts', 'posts.user_id', '=', 'users.id')->where('post_status', '=', 1)->where('posts.user_id', '=', auth()->user()->id)->get();
-
         // echo $data1;
         // exit;
         $comment = Post::join('users', 'users.id', '=', 'posts.user_id')->join('comments', 'comments.post_id', '=', 'posts.id')->get();
         $like = Post::join('likes', 'likes.post_id', '=', 'posts.id')->get();
         $user = User::latest()->get();
-        return view('admin.editprofile', compact('data1', 'postCount', 'comment', 'like', 'user', 'followingCount', 'followCount','pending'));
+        return view('admin.editprofile', compact('data1', 'postCount', 'comment', 'like', 'user', 'followingCount', 'followCount', 'pending'));
     }
 }

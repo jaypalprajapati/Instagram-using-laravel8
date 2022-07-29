@@ -43,7 +43,9 @@
 
 <body>
 
-  <center>  <h2>Post status</h2> </center>
+    <center>
+        <h2>Post status</h2>
+    </center>
 
     <table>
         <tr>
@@ -73,38 +75,41 @@
         </tr>
         @endforeach
     </table>
-<hr><hr>
+    <hr>
+    <hr>
 
-<center><h2>Post Rejected</h2></center>
+    <center>
+        <h2>Post Rejected</h2>
+    </center>
 
-<table>
-    <tr>
-        <th>User Profile</th>
-        <th>User Name</th>
-        <th>User Post</th>
-        <th>User Post Body</th>
-        <th>Action</th>
-    </tr>
-    @foreach($rejected as $reject)
-    <tr>
-        <td><img class="rounded-circle" alt="dp" src="{{ asset('profile/' .$reject->user->image)}}" width="90" height="90"></td>
-        <td>{{$reject->user->name}}</td>
-        <td><img alt="dp" src="{{ asset('image/' . $reject->image_post)}}" width="100" height="100"></td>
-        <td> {{$reject->body}} </td>
-        <td>
-            <form action="{{ route('post.reject',$reject->id) }}" method="get">
-                @csrf
-                <button type="submit" class="delete"><i class="fa fa-remove"> </i></button>
-            </form>
-        </td>
-        <td>
-            <form method="get" action="{{route('post.accept',$reject->id) }}"> @csrf
-                <button type="submit" ><i class="fa fa-check"></i></button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-</table>
+    <table>
+        <tr>
+            <th>User Profile</th>
+            <th>User Name</th>
+            <th>User Post</th>
+            <th>User Post Body</th>
+            <th>Action</th>
+        </tr>
+        @foreach($rejected as $reject)
+        <tr>
+            <td><img class="rounded-circle" alt="dp" src="{{ asset('profile/' .$reject->user->image)}}" width="90" height="90"></td>
+            <td>{{$reject->user->name}}</td>
+            <td><img alt="dp" src="{{ asset('image/' . $reject->image_post)}}" width="100" height="100"></td>
+            <td> {{$reject->body}} </td>
+            <td>
+                <form action="{{ route('post.reject',$reject->id) }}" method="get">
+                    @csrf
+                    <button type="submit" class="delete"><i class="fa fa-remove"> </i></button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="{{route('post.accept',$reject->id) }}"> @csrf
+                    <button type="submit"><i class="fa fa-check"></i></button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </table>
 
 </body>
 

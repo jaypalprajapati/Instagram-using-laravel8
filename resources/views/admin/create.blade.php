@@ -47,7 +47,7 @@
                         <div class="row mb-3">
                             <label for="number" class="col-md-4 col-form-label text-md-end">Contact </label>
                             <div class="col-md-6">
-                                <input type="tel"pattern="/^[\(\)\.\- ]{0,}[0-9]{3}[\(\)\.\- ]{0,}[0-9]{3}[\(\)\.\- ]{0,}[0-9]{4}[\(\)\.\- ]{0,}$/" class="form-control "id="contect" name="contect" value="{{ old('contect') }}" required autocomplete>
+                                <input type="tel" pattern="/^[\(\)\.\- ]{0,}[0-9]{3}[\(\)\.\- ]{0,}[0-9]{3}[\(\)\.\- ]{0,}[0-9]{4}[\(\)\.\- ]{0,}$/" class="form-control " id="contect" name="contect" value="{{ old('contect') }}" required autocomplete>
                                 @error('contect')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -117,20 +117,20 @@
                     maxlength: 50
                 },
                 contect: {
-                        required: true,
-                        minlength: 10,
-                        maxlength: 10,
-                        number: true
-                    },
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    number: true
+                },
                 password: {
                     required: true,
                     minlength: 4,
                     maxlength: 8,
                 },
                 passwordconfirm: {
-                        required: true,
-                        equalTo: "#password"
-                    },
+                    required: true,
+                    equalTo: "#password"
+                },
                 gender: {
                     required: true,
                 },
@@ -149,9 +149,9 @@
                     maxlength: "Email cannot be more than 50 characters",
                 },
                 contect: {
-                        required: "Phone number is required",
-                        minlength: "Phone number must be of 10 digits"
-                    },
+                    required: "Phone number is required",
+                    minlength: "Phone number must be of 10 digits"
+                },
 
                 password: {
                     required: "Password is required",
@@ -159,9 +159,9 @@
                     maxlength: "Password must be more than 8 characters"
                 },
                 passwordconfirm: {
-                        required:  "Confirm password is required",
-                        equalTo: "Password and confirm password should same"
-                    },
+                    required: "Confirm password is required",
+                    equalTo: "Password and confirm password should same"
+                },
                 gender: {
                     required: "Please select the gender",
                 },

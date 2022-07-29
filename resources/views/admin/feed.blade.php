@@ -3,7 +3,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-body{background-color:#eee}.time{font-size: 9px !important}.socials i{margin-right: 14px;font-size: 17px;color: #d2c8c8;cursor: pointer}.feed-image img{width: 100%;height: auto}
+    body {
+        background-color: #eee
+    }
+
+    .time {
+        font-size: 9px !important
+    }
+
+    .socials i {
+        margin-right: 14px;
+        font-size: 17px;
+        color: #d2c8c8;
+        cursor: pointer
+    }
+
+    .feed-image img {
+        width: 100%;
+        height: auto
+    }
 </style>
 <div class="container mt-4 mb-5">
     <div class="d-flex justify-content-center row">

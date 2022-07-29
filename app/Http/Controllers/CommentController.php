@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\comment;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,8 @@ class CommentController extends Controller
         //     'body' => 'required',
         // ]);
         $comment = $request->all();
-          echo $comment;exit();
+        echo $comment;
+        exit();
         comment::create($comment);
         return redirect()->route('post.index')
             ->with('success', 'post comment successfully.');

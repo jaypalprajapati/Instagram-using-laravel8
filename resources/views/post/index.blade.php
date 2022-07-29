@@ -15,12 +15,11 @@
     .redHeart {
         color: red;
     }
-   
 </style>
 <style>
     body {
         background-color: #eee;
-        
+
     }
 
     .time {
@@ -84,7 +83,7 @@
         margin-top: 10px;
         font-weight: 400;
         color: #999;
-        
+
     }
 
     .addComments {
@@ -212,19 +211,20 @@
             height: 300px;
         }
     }
+
     ::-webkit-scrollbar {
-  display: none;
-}
+        display: none;
+    }
 </style>
 
 
 @section('content')
 
-<div class="container mt-4 mb-5" >
+<div class="container mt-4 mb-5">
 
-    <div class="wrapper" >
+    <div class="wrapper">
         <!-- left col element -->
-        <p id="Suggestions"class="suggestion-text" style="position: fixed;">Suggestions for you</p><br><br>
+        <p id="Suggestions" class="suggestion-text" style="position: fixed;">Suggestions for you</p><br><br>
 
         <div class="right-col " style="float:left;position: fixed; overflow-y: scroll;height: 80%;">
             @foreach($user as $usr)
@@ -245,53 +245,53 @@
             @endforeach
         </div>
 
-        <div id="friends"  style="float:right;">
-        <div  style="overflow-y: scroll;height: auto;">
-        <p id="Suggestions"class="suggestion-text" >You Following</p>
-       
-            @foreach($friend_req as $fnfollow)
-            <br>
-            <div class="profile-card">
-                <div class="profile-pic">
-                    <img class="rounded-circle" alt="dp" src="{{ asset('profile/' . $fnfollow->image)}}" width="45">
+        <div id="friends" style="float:right;">
+            <div style="overflow-y: scroll;height: auto;">
+                <p id="Suggestions" class="suggestion-text">You Following</p>
+
+                @foreach($friend_req as $fnfollow)
+                <br>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img class="rounded-circle" alt="dp" src="{{ asset('profile/' . $fnfollow->image)}}" width="45">
+                    </div>
+                    <div>
+                        <p class="username"> {{$fnfollow->name}}</p>
+                        <p class="sub-text">following by You</p>
+                    </div>
+                    <form method="post" action="{{ route('friends.dltfrd',$fnfollow->fid) }}">
+                        @csrf
+
+                        <button type="submit" class="action-btn btn btn-info btn-sm shadow-none delete">Unfollow</button>
+                    </form>
                 </div>
-                <div>
-                    <p class="username"> {{$fnfollow->name}}</p>
-                    <p class="sub-text">following by You</p>
-                </div>
-                <form method="post" action="{{ route('friends.dltfrd',$fnfollow->fid) }}">
-                @csrf
-												
-                    <button type="submit" class="action-btn btn btn-info btn-sm shadow-none delete">Unfollow</button>
-                </form>
+                @endforeach
             </div>
-            @endforeach
-        </div>
             <div style="overflow-y: scroll;height:auto;">
-            <p id="Suggestions"class="suggestion-text" >Your Followers</p>
-            @foreach($friend_accept as $fnfollowing)
-            <br>
-            <div class="profile-card">
-                <div class="profile-pic">
-                    <img class="rounded-circle" alt="dp" src="{{ asset('profile/' . $fnfollowing->image)}}" width="45">
-                </div>
-                <div>
-                    <p class="username"> {{$fnfollowing->name}}</p>
-                    <p class="sub-text">following by You</p>
-                </div>
-                <!-- <form method="post" action="{{ route('friends.dltfrd',$fnfollowing->fid) }}">
+                <p id="Suggestions" class="suggestion-text">Your Followers</p>
+                @foreach($friend_accept as $fnfollowing)
+                <br>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img class="rounded-circle" alt="dp" src="{{ asset('profile/' . $fnfollowing->image)}}" width="45">
+                    </div>
+                    <div>
+                        <p class="username"> {{$fnfollowing->name}}</p>
+                        <p class="sub-text">following by You</p>
+                    </div>
+                    <!-- <form method="post" action="{{ route('friends.dltfrd',$fnfollowing->fid) }}">
                 @csrf
 												
                     <button type="submit" class="action-btn btn btn-info btn-sm shadow-none delete">Unfollow</button>
                 </form> -->
-            </div>
-            @endforeach
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
-    
+
     <div class="d-flex justify-content-center row" style="height:50px !important; position:absolute !important; ">
-    
+
         <div class="col-md-5" style="padding-left: 120px;margin-right: 350px;">
             <div class="feed p-2">
                 @foreach($posts as $post)
@@ -321,7 +321,7 @@
                                         @auth
                                         <i class="fal fa-heart pressLove {{$post->like->contains('user_id',auth()->id()) ? 'redHeart' : ''}} float-right">{{$post->like->count()}}</i>
                                         @else
-                                        <i class="fal fa-heart pressLove float-right">{{$post->like->count()}}</i> 
+                                        <i class="fal fa-heart pressLove float-right">{{$post->like->count()}}</i>
                                         <!-- {{$post->count()}} -->
                                         @endauth
                                     </button>
@@ -379,7 +379,7 @@
             data,
             success: function(data) {
                 elem.find('.pressLove').text(data.likes);
-                if (elem.find('.pressLove').hasClass('redHeart',)) {
+                if (elem.find('.pressLove').hasClass('redHeart', )) {
                     elem.find('.pressLove').removeClass('redHeart');
                 } else {
                     elem.find('.pressLove').addClass('redHeart');
@@ -406,4 +406,5 @@
 </script>
 
 </body>
+
 </html>

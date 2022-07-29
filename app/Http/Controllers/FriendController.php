@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\post;
-use App\Models\comment;
-use App\Models\like;
 use App\Models\User;
 use App\Models\friend;
 use Illuminate\Http\Request;
